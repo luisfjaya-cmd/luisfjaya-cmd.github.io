@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas Gratuitas para Crear Sitios Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #667eea;
+            color: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tool-icon {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+
+        .tool-title {
+            flex: 1;
+        }
+
+        .tool-title h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .tool-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .tool-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .tool-features {
+            margin-bottom: 20px;
+        }
+
+        .tool-features h3 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .tool-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-features li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tool-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .tool-pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95em;
+        }
+
+        .pros {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+
+        .pros h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .cons {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .cons h4 {
+            color: #e65100;
+            margin-bottom: 8px;
+        }
+
+        .tool-rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .rating-item {
+            text-align: center;
+        }
+
+        .rating-item .label {
+            font-size: 0.85em;
+            color: #666;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .rating-item .stars {
+            color: #ffc107;
+            font-size: 1.2em;
+        }
+
+        .tool-link {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .best-for {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .best-for h4 {
+            color: #f57c00;
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+
+        .comparison-table h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1em;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .check {
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+
+        .cross {
+            color: #f44336;
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Herramientas Gratuitas para Crear Sitios Web</h1>
+        <p class="subtitle">Sin necesidad de saber programar - Perfectas para principiantes</p>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterTools('all')">Todas</button>
+            <button class="filter-btn" onclick="filterTools('drag-drop')">Drag & Drop</button>
+            <button class="filter-btn" onclick="filterTools('cms')">CMS</button>
+            <button class="filter-btn" onclick="filterTools('portfolio')">Portfolio</button>
+            <button class="filter-btn" onclick="filterTools('ecommerce')">E-commerce</button>
+        </div>
+
+        <div class="tools-grid">
+            <!-- Wix -->
+            <div class="tool-card" data-category="drag-drop portfolio ecommerce">
+                <div class="tool-header">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-title">
+                        <h2>Wix</h2>
+                        <span class="tool-category">Editor Visual</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    La herramienta más popular de creación web con sistema drag-and-drop. Incluye más de 800 plantillas profesionales y es ideal para principiantes.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Pequeños negocios, portfolios creativos, sitios personales, tiendas online básicas</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Editor intuitivo arrastra y suelta</li>
+                        <li>Más de 800 plantillas diseñadas</li>
+                        <li>Hosting gratuito incluido</li>
+                        <li>Apps y extensiones disponibles</li>
+                        <li>Wix ADI (Inteligencia Artificial)</li>
+                        <li>Responsive automático</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Muy fácil de usar, gran variedad de diseños, app móvil para editar</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Marca Wix en plan gratuito, no puedes cambiar de plantilla después</p>
+                    </div>
+                </div>
+
+                <a href="https://www.wix.com" class="tool-link" target="_blank">Visitar Wix →</a>
+            </div>
+
+            <!-- WordPress.com -->
+            <div class="tool-card" data-category="cms portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-title">
+                        <h2>WordPress.com</h2>
+                        <span class="tool-category">CMS Popular</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    La plataforma de blogs y sitios web más utilizada en el mundo. Potente, flexible y con miles de temas y plugins disponibles.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Blogs, sitios de contenido, portfolios, sitios corporativos, comunidades online</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Miles de temas gratuitos</li>
+                        <li>Editor Gutenberg por bloques</li>
+                        <li>Perfecto para blogs y artículos</li>
+                        <li>Gran comunidad de soporte</li>
+                        <li>SEO optimizado</li>
+                        <li>Plugins para todo</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Muy potente, escalable, enorme comunidad, excelente para SEO</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Curva de aprendizaje mayor, necesitas plan de pago para plugins</p>
+                    </div>
+                </div>
+
+                <a href="https://wordpress.com" class="tool-link" target="_blank">Visitar WordPress →</a>
+            </div>
+
+            <!-- Google Sites -->
+            <div class="tool-card" data-category="drag-drop portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">🌐</div>
+                    <div class="tool-title">
+                        <h2>Google Sites</h2>
+                        <span class="tool-category">100% Gratis</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Herramienta gratuita de Google, súper simple y perfecta para proyectos escolares, intranets y sitios informativos básicos.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Proyectos educativos, portfolios simples, sitios de equipos, documentación interna</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Completamente gratuito, sin anuncios</li>
+                        <li>Integración con Google Drive</li>
+                        <li>Colaboración en tiempo real</li>
+                        <li>Plantillas simples pero efectivas</li>
+                        <li>Hosting incluido por Google</li>
+                        <li>Sin marca de agua</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★☆☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Gratis ilimitado, fácil, integración Google Workspace</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Diseños limitados, poca personalización visual</p>
+                    </div>
+                </div>
+
+                <a href="https://sites.google.com" class="tool-link" target="_blank">Visitar Google Sites →</a>
+            </div>
+
+            <!-- Webflow -->
+            <div class="tool-card" data-category="drag-drop portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">⚡</div>
+                    <div class="tool-title">
+                        <h2>Webflow</h2>
+                        <span class="tool-category">Diseño Avanzado</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    La herramienta preferida de diseñadores profesionales. Editor visual que genera código limpio. Más control creativo que cualquier otra plataforma.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Portfolios de diseño, landing pages, sitios corporativos modernos, agencias creativas</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Control total del diseño</li>
+                        <li>Animaciones y interacciones</li>
+                        <li>CMS integrado potente</li>
+                        <li>Código limpio exportable</li>
+                        <li>Responsive design preciso</li>
+                        <li>Plantillas profesionales</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Diseño profesional, control total, animaciones avanzadas</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Curva de aprendizaje, plan gratuito limitado</p>
+                    </div>
+                </div>
+
+                <a href="https://webflow.com" class="tool-link" target="_blank">Visitar Webflow →</a>
+            </div>
+
+            <!-- Carrd -->
+            <div class="tool-card" data-category="drag-drop portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">📄</div>
+                    <div class="tool-title">
+                        <h2>Carrd</h2>
+                        <span class="tool-category">One-Page Sites</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Especializado en crear sitios de una sola página. Perfecto para landing pages, portfolios minimalistas y páginas de contacto.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Landing pages, portfolios simples, tarjetas de presentación digitales, bios para redes sociales</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Súper rápido de crear</li>
+                        <li>Diseños minimalistas y modernos</li>
+                        <li>Hasta 3 sitios gratis</li>
+                        <li>Responsive automático</li>
+                        <li>Formularios de contacto</li>
+                        <li>Carga ultrarrápida</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Muy fácil, rápido, diseños limpios, económico</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Solo una página, funcionalidad limitada</p>
+                    </div>
+                </div>
+
+                <a href="https://carrd.co" class="tool-link" target="_blank">Visitar Carrd →</a>
+            </div>
+
+            <!-- Notion (Sites) -->
+            <div class="tool-card" data-category="cms portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">📋</div>
+                    <div class="tool-title">
+                        <h2>Notion Sites</h2>
+                        <span class="tool-category">Contenido Simple</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Convierte tus páginas de Notion en sitios web públicos con un clic. Perfecto para documentación, wikis y portfolios basados en contenido.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Portfolios de escritores, documentación, bases de conocimiento, blogs personales</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Publicar páginas con un clic</li>
+                        <li>Editor potente de Notion</li>
+                        <li>Bases de datos visuales</li>
+                        <li>Colaboración en tiempo real</li>
+                        <li>Totalmente gratuito</li>
+                        <li>Organización jerárquica</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Gratis, editor excelente, fácil actualizar contenido</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Diseño limitado, sin dominio personalizado gratis</p>
+                    </div>
+                </div>
+
+                <a href="https://www.notion.so" class="tool-link" target="_blank">Visitar Notion →</a>
+            </div>
+
+            <!-- Weebly -->
+            <div class="tool-card" data-category="drag-drop ecommerce">
+                <div class="tool-header">
+                    <div class="tool-icon">🛍️</div>
+                    <div class="tool-title">
+                        <h2>Weebly</h2>
+                        <span class="tool-category">E-commerce Fácil</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Constructor web simple con funciones de e-commerce integradas. Parte de Square, ideal para pequeñas tiendas online.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Pequeñas tiendas online, sitios de negocios locales, portfolios con ventas</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>E-commerce incluido</li>
+                        <li>Editor drag-and-drop</li>
+                        <li>Plantillas responsive</li>
+                        <li>Integración con Square</li>
+                        <li>Blog integrado</li>
+                        <li>Analytics básico</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>Bueno para ventas, fácil de usar, integración pagos</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Menos plantillas que competidores, funciones limitadas en plan gratuito</p>
+                    </div>
+                </div>
+
+                <a href="https://www.weebly.com" class="tool-link" target="_blank">Visitar Weebly →</a>
+            </div>
+
+            <!-- GitHub Pages -->
+            <div class="tool-card" data-category="portfolio">
+                <div class="tool-header">
+                    <div class="tool-icon">💻</div>
+                    <div class="tool-title">
+                        <h2>GitHub Pages</h2>
+                        <span class="tool-category">Para Developers</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Hosting gratuito para sitios estáticos directamente desde tu repositorio de GitHub. Perfecto para portfolios de programadores.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Portfolios de desarrolladores, proyectos de código abierto, documentación técnica</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Hosting gratuito ilimitado</li>
+                        <li>Integración con Git</li>
+                        <li>Soporte Jekyll (generador estático)</li>
+                        <li>HTTPS gratuito</li>
+                        <li>Dominio personalizado gratis</li>
+                        <li>Deploy automático</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>100% gratis, control total, profesional, rápido</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Requiere conocimientos de HTML/CSS, solo sitios estáticos</p>
+                    </div>
+                </div>
+
+                <a href="https://pages.github.com" class="tool-link" target="_blank">Visitar GitHub Pages →</a>
+            </div>
+        </div>
+
+        <!-- Tabla comparativa -->
+        <div class="comparison-table">
+            <h2>📊 Comparación Rápida</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Herramienta</th>
+                        <th>Sin Código</th>
+                        <th>Gratis Total</th>
+                        <th>E-commerce</th>
+                        <th>Dominio Propio</th>
+                        <th>Dificultad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Wix</strong></td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td>Muy Fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WordPress.com</strong></td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Sites</strong></td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td>Muy Fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Webflow</strong></td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td>Media-Alta</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carrd</strong></td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td>Muy Fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Notion Sites</strong></td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td>Fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weebly</strong></td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td>Fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GitHub Pages</strong></td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td>Alta</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function filterTools(category) {
+            const cards = document.querySelectorAll('.tool-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    if (categories.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+                <div class="tool-header">
+                    <div class="tool-icon">💻</div>
+                    <div class="tool-title">
+                        <h2>GitHub Pages</h2>
+                        <span class="tool-category">Para Developers</span>
+                    </div>
+                </div>
+
+                <p class="tool-description">
+                    Hosting gratuito para sitios estáticos directamente desde tu repositorio de GitHub. Perfecto para portfolios de programadores.
+                </p>
+
+                <div class="best-for">
+                    <h4>✨ Ideal para:</h4>
+                    <p>Portfolios de desarrolladores, proyectos de código abierto, documentación técnica</p>
+                </div>
+
+                <div class="tool-features">
+                    <h3>Características principales:</h3>
+                    <ul>
+                        <li>Hosting gratuito ilimitado</li>
+                        <li>Integración con Git</li>
+                        <li>Soporte Jekyll (generador estático)</li>
+                        <li>HTTPS gratuito</li>
+                        <li>Dominio personalizado gratis</li>
+                        <li>Deploy automático</li>
+                    </ul>
+                </div>
+
+                <div class="tool-rating">
+                    <div class="rating-item">
+                        <span class="label">Facilidad</span>
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Flexibilidad</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="label">Profesional</span>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="tool-pros-cons">
+                    <div class="pros">
+                        <h4>✅ Ventajas</h4>
+                        <p>100% gratis, control total, profesional, rápido</p>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ Limitaciones</h4>
+                        <p>Requiere conocimientos de HTML/CSS, solo sitios estáticos
